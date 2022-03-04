@@ -2,7 +2,11 @@ import express, { Application, Request, Response } from 'express';
 import log from './logger';
 import connect from './db/connect';
 import route from './route';
+import { deserializeUser } from './middleware';
+
 const app: Application = express();
+
+app.use(deserializeUser);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

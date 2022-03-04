@@ -1,4 +1,4 @@
-import { DocumentDefinition } from 'mongoose';
+import { DocumentDefinition, FilterQuery } from 'mongoose';
 import userModel, { UserDocument } from "../model/user.model";
 
 // export const createUser = async (input: DocumentDefinition<UserDocument>) => {
@@ -9,9 +9,9 @@ import userModel, { UserDocument } from "../model/user.model";
 //     }
 // }
 
-// const findUser = async () => {
-
-// }
+export const findUser = async (query: FilterQuery<UserDocument>) => {
+    return userModel.findOne(query).lean();
+}
 
 export const validatePassword = async (
     {

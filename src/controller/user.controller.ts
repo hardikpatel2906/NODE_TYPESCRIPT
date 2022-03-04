@@ -12,10 +12,10 @@ export const userCreate = async (req: Request, res: Response) => {
     }
 };
 
-export const userSessionHnadler = async (req: Request, res: Response) => {
-    try {
+// export const userSessionHnadler = async (req: Request, res: Response) => {
+//     try {
 
-    } catch (e) {
+//     } catch (e) {
 
-    }
-};
+//     }
+// };

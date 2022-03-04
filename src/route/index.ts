@@ -1,8 +1,8 @@
 import express from "express";
-import { userCreate, userSessionHnadler } from "../controller/user.controller";
-import validateRequest from '../middleware/validateRequest';
+import { userCreate } from "../controller/user.controller";
+import { validateRequest, requiresUser } from '../middleware';
 import { createUserSchema, createUserSessionSchema } from '../schema/user.schema';
-
+import { createUserSessionHandler, invalidateUserSessionHandler } from "../controller/session.controller";
 let route = express.Router();
 
 // route.get('/', (req, res) => { res.sendStatus(200) })
@@ -11,7 +11,8 @@ let route = express.Router();
 route.post("/api/createUser", validateRequest(createUserSchema), userCreate);
 
 /** USER LOGIN */
-route.post("/api/sessions", validateRequest(createUserSessionSchema), userSessionHnadler)
+route.post("/api/sessions", validateRequest(createUserSessionSchema), createUserSessionHandler)
 
+route.delete("/api/session", requiresUser, invalidateUserSessionHandler);
 
 export default route;
